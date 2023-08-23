@@ -18,4 +18,8 @@ class CustomerService(
         customerRepository.save(customerEntity)
     }
 
+//    fun getWithFilter(params: CustomerSearchCriteria, customerPage: CustomerPage): Page<CustomerEntity> {
+//        return customerRepository.getWithFilter(params, customerPage)
+//    }
+
 }

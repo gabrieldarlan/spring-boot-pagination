@@ -34,4 +34,11 @@ class CustomerController(
         val customerPage = customerService.getAll(pageable)
         return pagedResourcesAssembler.toModel(customerPage, customerModelAssembler)
     }
+
+
+//    @GetMapping("/filter")
+//    fun getWithFilter(@RequestBody params: CustomerSearchCriteria, customerPage: CustomerPage): ResponseEntity<Any> {
+//        val response = customerService.getWithFilter(params, customerPage)
+//        return ResponseEntity.ok(response)
+//    }
 }

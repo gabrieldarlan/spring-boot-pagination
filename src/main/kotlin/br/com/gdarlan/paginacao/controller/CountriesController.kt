@@ -1,6 +1,8 @@
 package br.com.gdarlan.paginacao.controller
 
+import br.com.gdarlan.paginacao.entity.CountriesEntity
 import br.com.gdarlan.paginacao.service.CountriesService
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.hateoas.server.mvc.linkTo
 import org.springframework.http.ResponseEntity
@@ -26,6 +28,16 @@ class CountriesController(
             country.add(linkTo<CountriesController> { findById(idResponse!!) }.withSelfRel())
         }
         return ResponseEntity.ok(listaCountries);
+    }
+
+    @GetMapping("filter")
+    fun getWithFilter(
+        @RequestParam(name = "name", required = false) name: String?,
+        pageable: Pageable
+    ): ResponseEntity<Page<CountriesEntity>> {
+        val countriesEntities = countriesService.getWithFilter(name, pageable)
+        return ResponseEntity.ok(countriesEntities)
+
     }
 
     @GetMapping("findbyid/{id}")
